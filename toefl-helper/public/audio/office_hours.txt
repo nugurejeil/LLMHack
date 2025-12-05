@@ -1,0 +1,10 @@
+Professor: Come in. Ah, Sarah. Good to see you. How can I help you today?
+Student: Hi, Professor Miller. I wanted to ask about the final term paper. I was looking over the syllabus, and I'm a bit torn between two topics.
+Professor: Sure, strictly speaking, the deadline for topic submission is next week, so you're asking at the right time. What are you considering?
+Student: Well, I'm really interested in the Urban Planning section we covered last week. Specifically, I want to write about the impact of Green Spaces on mental health in cities. But... I'm worried there might not be enough quantitative data for a 10-page paper.
+Professor: I see. That's a valid concern. While it is a fascinating topic, finding hard statistics specifically for mental health can be tricky compared to, say, air quality data. However, there have been some recent studies published in the Journal of Urban Design. Have you checked the library database yet?
+Student: Not the specific journals, just general articles.
+Professor: I suggest you start there. If you can find at least three major case studies, the topic is viable. If not, you might want to pivot to your second option. What was the other one?
+Student: It was about the Heat Island Effect in downtown areas.
+Professor: Ah, that one is much more straightforward. Plenty of data. But stick with the Green Spaces idea for a day or two. Do some deep digging. I think you might be surprised by what you find.
+Student: Okay, I'll give it a try. Thanks, Professor!

@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+/* TOEFL 80 Design System - Custom Colors & Typography */
+
+:root {
+  /* Primary Colors */
+  --warm-cream: #fdf6e3;
+  --soft-peach: #ffecd2;
+  --strawberry-pink: #e8a0a0;
+  --honey-brown: #d4a574;
+  --cocoa-brown: #8b6f5c;
+
+  /* Status Colors */
+  --mint-green: #a8d5ba;
+  --butter-yellow: #f4d03f;
+
+  /* Text Colors */
+  --text-primary: #3d3d3d;
+  --text-secondary: #7a7a7a;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-soft: 0 4px 12px rgba(139, 111, 92, 0.1);
+  --shadow-card: 0 8px 24px rgba(139, 111, 92, 0.15);
+}
+
+@theme inline {
+  /* Background Colors */
+  --color-cream: var(--warm-cream);
+  --color-peach: var(--soft-peach);
+  --color-pink: var(--strawberry-pink);
+  --color-honey: var(--honey-brown);
+  --color-cocoa: var(--cocoa-brown);
+
+  /* Status Colors */
+  --color-mint: var(--mint-green);
+  --color-butter: var(--butter-yellow);
+
+  /* Text Colors */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+
+  /* Border Radius Tokens */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-full: var(--radius-full);
+
+  /* Shadow Tokens */
+  --shadow-soft: var(--shadow-soft);
+  --shadow-card: var(--shadow-card);
+
+  /* Font Families */
+  --font-sans: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  --font-title-en: "Quicksand", var(--font-sans);
+  --font-body-en: "Nunito", var(--font-sans);
+  --font-number: "Baloo 2", var(--font-sans);
+}
+
+body {
+  background: var(--warm-cream);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

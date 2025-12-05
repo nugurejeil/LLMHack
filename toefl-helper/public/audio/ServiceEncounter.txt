@@ -1,0 +1,8 @@
+Librarian: Hi, how can I help you today? 
+Student: Hi. I, uh, I tried to check out this book at the self-service kiosk, but the machine said my account is blocked. I’m not sure why. 
+Librarian: Let me take a look. Can I have your student ID? ... Okay, let's see. Ah, it looks like you have an overdue fine from last semester. It’s for a reserved textbook—"Intro to Psychology". 
+Student: Oh, right! I totally forgot. I returned it just a few hours late because I had a class. Is the fine huge? 
+Librarian: Since it was a "Reserve" item, the fine is steeper than usual. It’s 10 dollars. You need to clear this balance before you can borrow anything else. 
+Student: I see. Can I pay with my credit card right now? 
+Librarian: Unfortunately, we only accept payments through the university’s online portal or at the Bursar’s office. But if you pay online on your phone now, I can refresh the system in about five minutes and unblock you. 
+Student: Okay, I’ll do that right here. Thanks for your help!
