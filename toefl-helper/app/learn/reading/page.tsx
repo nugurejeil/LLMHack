@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { getRandomReadingSession } from '@/lib/data/readingData'
 import { ReadingPassage, ReadingQuestion, ReadingAnswer } from '@/lib/types/reading'
 import ToastyReaction from '@/components/reading/ToastyReaction'
+import { PageLayout } from '@/components/layout'
 import { Button, Card, Badge } from '@/components/ui'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
@@ -20,15 +22,25 @@ export default function ReadingLearningPage() {
   const [showReaction, setShowReaction] = useState(false)
   const [lastAnswer, setLastAnswer] = useState<boolean | null>(null)
   const [isCompleted, setIsCompleted] = useState(false)
-  const [startTime] = useState(Date.now())
+  const [startTime, setStartTime] = useState(Date.now())
   const [questionStartTime, setQuestionStartTime] = useState(Date.now())
+  const [sessionKey, setSessionKey] = useState(0)
 
   useEffect(() => {
     // Load random reading session
     const session = getRandomReadingSession()
     setPassage(session.passage)
     setQuestions(session.questions)
-  }, [])
+    setCurrentQuestionIndex(0)
+    setSelectedAnswer(null)
+    setAnswers([])
+    setShowExplanation(false)
+    setShowReaction(false)
+    setLastAnswer(null)
+    setIsCompleted(false)
+    setStartTime(Date.now())
+    setQuestionStartTime(Date.now())
+  }, [sessionKey])
 
   const currentQuestion = questions[currentQuestionIndex]
   const progress = questions.length > 0 ? ((currentQuestionIndex + 1) / questions.length) * 100 : 0
@@ -71,15 +83,7 @@ export default function ReadingLearningPage() {
   }
 
   const handleRestart = () => {
-    const session = getRandomReadingSession()
-    setPassage(session.passage)
-    setQuestions(session.questions)
-    setCurrentQuestionIndex(0)
-    setSelectedAnswer(null)
-    setAnswers([])
-    setShowExplanation(false)
-    setIsCompleted(false)
-    setQuestionStartTime(Date.now())
+    setSessionKey(prev => prev + 1)
   }
 
   const handleGoHome = () => {
@@ -88,12 +92,14 @@ export default function ReadingLearningPage() {
 
   if (!passage || questions.length === 0) {
     return (
-      <div className="min-h-screen bg-warm-cream flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-4xl mb-4">🐱</div>
-          <p className="text-text-secondary">지문을 불러오는 중...</p>
+      <PageLayout>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <div className="text-4xl mb-4">🐱</div>
+            <p className="text-text-secondary">지문을 불러오는 중...</p>
+          </div>
         </div>
-      </div>
+      </PageLayout>
     )
   }
 
@@ -102,7 +108,7 @@ export default function ReadingLearningPage() {
     const accuracy = questions.length > 0 ? Math.round((correctCount / questions.length) * 100) : 0
 
     return (
-      <div className="min-h-screen bg-warm-cream p-6">
+      <PageLayout>
         <div className="max-w-2xl mx-auto">
           {/* Header with Toasty */}
           <motion.div
@@ -193,12 +199,12 @@ export default function ReadingLearningPage() {
             </Button>
           </div>
         </div>
-      </div>
+      </PageLayout>
     )
   }
 
   return (
-    <div className="min-h-screen bg-warm-cream p-6">
+    <PageLayout>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-6">
@@ -438,10 +444,10 @@ export default function ReadingLearningPage() {
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Toasty Reaction */}
-      <ToastyReaction isCorrect={lastAnswer} show={showReaction} />
-    </div>
+        {/* Toasty Reaction */}
+        <ToastyReaction isCorrect={lastAnswer} show={showReaction} />
+      </div>
+    </PageLayout>
   )
 }

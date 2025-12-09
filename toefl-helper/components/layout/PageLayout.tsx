@@ -20,7 +20,7 @@ export default function PageLayout({
     <div className="min-h-screen bg-cream flex flex-col">
       {showHeader && <Header />}
 
-      <main className={`flex-1 ${showBottomNav ? 'pb-16 md:pb-0' : ''} ${className}`}>
+      <main className={`flex-1 ${showBottomNav ? 'pb-16 md:pb-0' : ''} pt-5 ${className}`}>
         {children}
       </main>
 

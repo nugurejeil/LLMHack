@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { getRandomWords } from '@/lib/data/vocabularyData'
 import { VocabularyWord } from '@/lib/types/vocabulary'
 import Flashcard from '@/components/vocabulary/Flashcard'
 import MochiReaction from '@/components/vocabulary/MochiReaction'
+import { PageLayout } from '@/components/layout'
 import { Button, Card, Badge } from '@/components/ui'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
@@ -20,13 +22,22 @@ export default function VocabularyLearningPage() {
   const [showReaction, setShowReaction] = useState(false)
   const [lastAnswer, setLastAnswer] = useState<boolean | null>(null)
   const [isCompleted, setIsCompleted] = useState(false)
-  const [startTime] = useState(Date.now())
+  const [startTime, setStartTime] = useState(Date.now())
+  const [sessionKey, setSessionKey] = useState(0)
 
   useEffect(() => {
     // Load 10 random words for the session
     const sessionWords = getRandomWords(10)
     setWords(sessionWords)
-  }, [])
+    setCurrentIndex(0)
+    setIsFlipped(false)
+    setCorrectCount(0)
+    setIncorrectCount(0)
+    setShowReaction(false)
+    setLastAnswer(null)
+    setIsCompleted(false)
+    setStartTime(Date.now())
+  }, [sessionKey])
 
   const currentWord = words[currentIndex]
   const progress = words.length > 0 ? ((currentIndex + 1) / words.length) * 100 : 0
@@ -61,13 +72,7 @@ export default function VocabularyLearningPage() {
   }
 
   const handleRestart = () => {
-    const sessionWords = getRandomWords(10)
-    setWords(sessionWords)
-    setCurrentIndex(0)
-    setIsFlipped(false)
-    setCorrectCount(0)
-    setIncorrectCount(0)
-    setIsCompleted(false)
+    setSessionKey(prev => prev + 1)
   }
 
   const handleGoHome = () => {
@@ -76,12 +81,14 @@ export default function VocabularyLearningPage() {
 
   if (words.length === 0) {
     return (
-      <div className="min-h-screen bg-warm-cream flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-4xl mb-4">🐹</div>
-          <p className="text-text-secondary">단어를 불러오는 중...</p>
+      <PageLayout>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <div className="text-4xl mb-4">🐹</div>
+            <p className="text-text-secondary">단어를 불러오는 중...</p>
+          </div>
         </div>
-      </div>
+      </PageLayout>
     )
   }
 
@@ -90,7 +97,7 @@ export default function VocabularyLearningPage() {
     const accuracy = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0
 
     return (
-      <div className="min-h-screen bg-warm-cream p-6">
+      <PageLayout>
         <div className="max-w-2xl mx-auto">
           {/* Header with Mochi */}
           <motion.div
@@ -178,12 +185,12 @@ export default function VocabularyLearningPage() {
             </Button>
           </div>
         </div>
-      </div>
+      </PageLayout>
     )
   }
 
   return (
-    <div className="min-h-screen bg-warm-cream p-6">
+    <PageLayout>
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-6">
@@ -270,10 +277,10 @@ export default function VocabularyLearningPage() {
             </Button>
           </motion.div>
         )}
-      </div>
 
-      {/* Mochi Reaction */}
-      <MochiReaction isCorrect={lastAnswer} show={showReaction} />
-    </div>
+        {/* Mochi Reaction */}
+        <MochiReaction isCorrect={lastAnswer} show={showReaction} />
+      </div>
+    </PageLayout>
   )
 }

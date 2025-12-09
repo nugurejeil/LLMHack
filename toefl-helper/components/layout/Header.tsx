@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 interface Mascot {
@@ -63,14 +64,16 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-text-primary font-[var(--font-title-en)]">
-              TOEFL 80
-            </h1>
+            <Link href="/">
+              <h1 className="text-2xl font-bold text-text-primary font-[var(--font-title-en)] cursor-pointer hover:text-honey-brown transition-colors">
+                TOEFL 80
+              </h1>
+            </Link>
           </div>
 
           {/* Today's Mascot Greeting */}
           <motion.div
-            className="hidden md:flex items-center gap-3 bg-peach px-4 py-2 rounded-full"
+            className="hidden md:flex items-center gap-3 bg-peach px-4 py-1.5 rounded-full h-12"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -78,8 +81,8 @@ export default function Header() {
             <Image
               src={todayMascot.image}
               alt={todayMascot.name}
-              width={40}
-              height={40}
+              width={36}
+              height={36}
               className="object-contain"
             />
             <div className="flex flex-col">
